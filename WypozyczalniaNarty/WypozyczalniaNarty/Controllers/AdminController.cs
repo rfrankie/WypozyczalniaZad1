@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WypozyczalniaNarty.Models;
 using System.IO;
+using PagedList;
 
 
 namespace WypozyczalniaNarty.Controllers
@@ -43,6 +44,18 @@ namespace WypozyczalniaNarty.Controllers
             {
                 return RedirectToAction("login");
             }
+            return View();
+        }
+
+        public ActionResult ViewNarty(int? page)
+        {
+            int pagesize = 9, pageindex = 1;
+            pageindex = page.HasValue ? Convert.ToInt32(page) : 1;
+            var list = db.Narties.Where(x => x.NartaStatus == true).ToList();
+            IPagedList<Narty> stu = list.ToPagedList(pageindex, pagesize);
+
+
+            return View(stu);
             return View();
         }
 
