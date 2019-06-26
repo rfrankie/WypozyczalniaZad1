@@ -51,7 +51,7 @@ namespace WypozyczalniaNarty.Controllers
         {
             int pagesize = 9, pageindex = 1;
             pageindex = page.HasValue ? Convert.ToInt32(page) : 1;
-            var list = db.Narties.Where(x => x.NartaStatus == true).ToList();
+            var list = db.Narties.Where(x => x.NartaStatus == true).OrderByDescending(x => x.NartaId).ToList();
             IPagedList<Narty> stu = list.ToPagedList(pageindex, pagesize);
 
 
@@ -65,7 +65,7 @@ namespace WypozyczalniaNarty.Controllers
             string path = uploadimgfile(imgfile);
             if (path.Equals("-1"))
             {
-                ViewBag.error = "Nie udalo sie wgrac obrazka";
+                ViewBag.error = "Nie udalo sie wczytac obrazka";
             }
             else
             {
@@ -77,7 +77,7 @@ namespace WypozyczalniaNarty.Controllers
                 nar.NartaStatus = true;
                 db.Narties.Add(nar);
                 db.SaveChanges();
-                return RedirectToAction("Create");
+                return RedirectToAction("ViewNarty");
             }
 
             return View();

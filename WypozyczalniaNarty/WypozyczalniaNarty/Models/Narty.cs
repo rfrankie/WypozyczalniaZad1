@@ -28,6 +28,8 @@ namespace WypozyczalniaNarty.Models
 
         [Required(ErrorMessage = "*")]
         public string NartaModel { get; set; }
+
+        [Required(ErrorMessage = "*")]
         public decimal NartaCena { get; set; }
         public bool NartaStatus { get; set; }
         public string NartaZdjecie { get; set; }

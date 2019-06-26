@@ -11,7 +11,8 @@ namespace WypozyczalniaNarty.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Klienci
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +22,25 @@ namespace WypozyczalniaNarty.Models
         }
     
         public int KlientId { get; set; }
+
+        [Required(ErrorMessage = "Pole jest wymagane.")]
         public string KlientImie { get; set; }
+
+        [Required(ErrorMessage = "Pole jest wymagane.")]
         public string KlientNazwisko { get; set; }
+
+        [Required(ErrorMessage = "Pole jest wymagane.")]
         public decimal KlientPesel { get; set; }
+
+        [Required(ErrorMessage = "Pole jest wymagane.")]
         public decimal KlientTel { get; set; }
+
+        [Required(ErrorMessage = "Pole jest wymagane.")]
         public string KlientMail { get; set; }
+
         public string KlientLogin { get; set; }
+
+        [Required(ErrorMessage = "Pole jest wymagane.")]
         public string KlientPassword { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
